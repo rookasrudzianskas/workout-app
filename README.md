@@ -19,6 +19,9 @@ Run with `npm start` and use `i` and `a` to launch app on expo go. `w` to launch
 
 > ℹ️ For all these steps you need to install EAS first
 
+// Is it working
+ // Yes, you
+
 ```bash
 npm install -g eas-cli
 ```
