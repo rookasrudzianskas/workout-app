@@ -1,12 +1,15 @@
 // @ts-nocheck
 import { vars, useColorScheme } from "nativewind";
-import {Pressable, Text, View, PressableProps, FlatList, StyleSheet} from "react-native";
+import {Pressable, Text, View, PressableProps, FlatList, StyleSheet, ActivityIndicator} from "react-native";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/src/lib/utils";
 import React from "react";
 import {StatusBar} from "expo-status-bar";
 import ExerciseListItem from "@/src/components/ExerciseListItem";
 import {Stack} from "expo-router"
+import {useQuery} from "@tanstack/react-query";
+import {gql} from "graphql-request";
+import client from "@/src/components/graphqlClient";
 
 const DATA = [
   {
@@ -91,12 +94,35 @@ const DATA = [
   }
 ]
 
+const exercisesQuery = gql`
+    query exercises($muscle: String, $name: String) {
+        exercises(muscle: $muscle, name: $name) {
+            name
+            muscle
+            equipment
+        }
+    }
+`;
+
 const TabOneScreen = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['exercises'],
+    queryFn: () => client.request(exercisesQuery),
+  });
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Failed to fetch exercises</Text>;
+  }
+
   return (
     <View className="flex flex-1 p-3 pt-16">
       <Stack.Screen options={{ headerShown: false }} />
       <FlatList
-        data={DATA}
+        data={data?.exercises}
         contentContainerStyle={{ gap: 5 }}
         keyExtractor={(item, index) => item.name + index}
         renderItem={({ item }) => <ExerciseListItem item={item} />}
