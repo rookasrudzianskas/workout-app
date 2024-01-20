@@ -53,13 +53,13 @@ function RootLayoutNav() {
   const client = new QueryClient();
 
   return (
-    <QueryClientProvider client={client}>
       <View style={[theme, StyleSheet.absoluteFill]}>
+    <QueryClientProvider client={client}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
         </Stack>
-      </View>
     </QueryClientProvider>
+      </View>
   );
 }
