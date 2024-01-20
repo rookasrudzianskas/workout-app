@@ -10,6 +10,7 @@ import exercises from '../data/exercises.json';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import NewSetInput from "@/src/components/NewSetInput";
+import SetsList from "@/src/components/SetsList";
 // import { gql } from 'graphql-request';
 // import { useQuery } from '@tanstack/react-query';
 // import graphqlClient from '../graphqlClient';
