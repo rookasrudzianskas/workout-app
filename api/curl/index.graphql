@@ -1,4 +1,4 @@
-type RootEntry {
+type Exercise {
   difficulty: String
   equipment: String
   instructions: String
@@ -8,7 +8,7 @@ type RootEntry {
 }
 
 type Query {
-  myQuery(muscle: String): [RootEntry]
+  exercises(muscle: String, name: String): [Exercise]
     @rest(
       endpoint: "https://api.api-ninjas.com/v1/exercises"
       headers: [
