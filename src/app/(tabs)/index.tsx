@@ -6,7 +6,7 @@ import { cn } from "@/src/lib/utils";
 import React from "react";
 import {StatusBar} from "expo-status-bar";
 import ExerciseListItem from "@/src/components/ExerciseListItem";
-import data from '../../data/exercises.json';
+import {Stack} from "expo-router"
 
 const DATA = [
   {
@@ -93,7 +93,8 @@ const DATA = [
 
 const TabOneScreen = () => {
   return (
-    <View className="flex flex-1 p-3">
+    <View className="flex flex-1 p-3 pt-16">
+      <Stack.Screen options={{ headerShown: false }} />
       <FlatList
         data={DATA}
         contentContainerStyle={{ gap: 5 }}
