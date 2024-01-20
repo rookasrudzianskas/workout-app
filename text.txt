@@ -1,0 +1,4 @@
+stepzen import curl -X GET \
+  'https://api.api-ninjas.com/v1/exercises?muscle=biceps' \
+  -H 'X-Api-Key: QW/sNg1SFfl6AO4+r74uZQ==bE82RK7KWTKjbWX2' \
+  -H 'Content-Type: application/json'
