@@ -11,39 +11,37 @@ import { Stack } from 'expo-router';
 import { useState } from 'react';
 import NewSetInput from "@/src/components/NewSetInput";
 import SetsList from "@/src/components/SetsList";
-// import { gql } from 'graphql-request';
-// import { useQuery } from '@tanstack/react-query';
-// import graphqlClient from '../graphqlClient';
-// import NewSetInput from '../components/NewSetInput';
-// import SetsList from '../components/SetsList';
+import { gql } from 'graphql-request';
+import { useQuery } from '@tanstack/react-query';
+import graphqlClient from "@/src/components/graphqlClient";
 
-// const exerciseQuery = gql`
-//     query exercises($name: String) {
-//         exercises(name: $name) {
-//             name
-//             muscle
-//             instructions
-//             equipment
-//         }
-//     }
-// `;
+const exerciseQuery = gql`
+    query exercises($name: String) {
+        exercises(name: $name) {
+            name
+            muscle
+            instructions
+            equipment
+        }
+    }
+`;
 
 export default function ExerciseDetailsScreen() {
   const { name } = useLocalSearchParams();
-  // const { data, isLoading, error } = useQuery({
-  //   queryKey: ['exercises', name],
-  //   queryFn: () => graphqlClient.request(exerciseQuery, { name }),
-  // });
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['exercises', name],
+    queryFn: () => graphqlClient.request(exerciseQuery, { name }),
+  });
 
   const [isInstructionExpanded, setIsInstructionExpanded] = useState(false);
 
-  // if (isLoading) {
-  //   return <ActivityIndicator />;
-  // }
-  //
-  // if (error) {
-  //   return <Text>Failed to fetch data</Text>;
-  // }
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>Failed to fetch data</Text>;
+  }
 
   const exercise = exercises[0];
 
