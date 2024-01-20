@@ -5,6 +5,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { vars } from "nativewind";
 import { memo, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -49,12 +50,16 @@ const theme = vars({
 });
 
 function RootLayoutNav() {
+  const client = new QueryClient();
+
   return (
-    <View style={[theme, StyleSheet.absoluteFill]}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-      </Stack>
-    </View>
+    <QueryClientProvider client={client}>
+      <View style={[theme, StyleSheet.absoluteFill]}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        </Stack>
+      </View>
+    </QueryClientProvider>
   );
 }
