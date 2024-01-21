@@ -1,4 +1,4 @@
-# ⚛️💨 Universal Nativewind v4 s
+# ⚛️💨 Universal Nativewind v4
 
 <img src="https://i.imgur.com/WXzT4GR.png" alt="Image"/>
 This starter is a expo managed app setup to create universal apps using expo-router and nativewind v4.
